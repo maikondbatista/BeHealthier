@@ -2,11 +2,19 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
+import { TAB } from './app/core/providers/tab.provider';
 import { environment } from './environments/environment';
 
-if (environment.production) {
-  enableProdMode();
-}
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  if (environment.production) {
+    enableProdMode();
+  }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  const tab = [...tabs].pop();
+  const { id: tabId } = tab;
+
+  // provides the current Tab ID so you can send messages to the content page
+  platformBrowserDynamic([{ provide: TAB, useValue: tabId }])
+    .bootstrapModule(AppModule)
+    .catch((error) => console.error(error));
+});
