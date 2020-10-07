@@ -4,6 +4,9 @@
   "description": "Build an Extension with Angular",
   "manifest_version": 2,
   "browser_action": {
+    "browser_style": true,
+    "default_title": "Be Healthier",
     "default_popup": "index.html?#/settings"
-  }
+  },
+  "permissions": ["notifications"]
 }

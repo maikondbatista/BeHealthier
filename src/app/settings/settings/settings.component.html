@@ -1,1 +1,31 @@
-<p>settings works!</p>
+<h5>{{Title}}</h5>
+<ng-container *ngFor="let reminder of settings.Reminders">
+    <div class="form-row">
+        <label>{{reminder.title}}: Lembrar à cada {{reminder.value}} minutos</label>
+        <!-- <div class="col">
+            <label>{{reminder.title}}: Alertar à cada</label>
+        </div>
+        <div class="col">
+            <input class="form-control" type="text" step="1" [(ngModel)]="reminder.value">
+        </div>
+        <div class="col">
+            <label> minutos</label>
+        </div> -->
+
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <mv-slider [(value)]="reminder.value" [min]="1" [max]="100"></mv-slider>
+        </div>
+        <div class="col div-status">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" [id]="reminder.id">
+                <label class="custom-control-label" [for]="reminder.id"></label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <hr style="width: 100%;" />
+    </div>
+    <button class="btn btn-primary" (click)="testar()">testar</button>
+</ng-container>
