@@ -1,0 +1,25 @@
+<button class="btn btn-link" (click)="teste()" *ngIf="thereIsPreviousPage">
+    &#8592; Voltar para planos
+</button>
+<div class="pl-3">
+    <div class="form-row">
+        <label for="title">Titulo</label>
+        <input #Title type="text" class="form-control" id="title" placeholder="Piscar" [(ngModel)]="reminder.title" />
+    </div>
+    <div class="form-row">
+        <label for="description">Descrição</label>
+        <input type="text" class="form-control" id="description" placeholder="Lembrete de piscar" [(ngModel)]="reminder.description" />
+    </div>
+
+    <div class="form-row">
+        <label for="slider">{{reminder.title}}: Lembrar à cada {{reminder.value}} minutos</label>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <mv-slider id="slider" [(value)]="reminder.value" [min]="1" [max]="100"></mv-slider>
+        </div>
+    </div>
+    <div class="form-row mt-3 right-align">
+        <button class="btn btn-primary">Salvar</button>
+    </div>
+</div>

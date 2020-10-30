@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { SettingsModel } from 'src/app/shared/shared/models/model.module';
-import { ReminderModel } from 'src/app/shared/shared/models/Reminder.model';
+import { UrlConstant } from 'src/app/shared/constants/urls.contant';
+import {
+  ReminderModel,
+  SettingsModel,
+} from 'src/app/shared/models/Model.module';
 
 @Component({
   selector: 'app-settings',
@@ -10,7 +12,6 @@ import { ReminderModel } from 'src/app/shared/shared/models/Reminder.model';
 })
 export class SettingsComponent implements OnInit {
   Title = 'Be Healthier';
-  bsModalRef: BsModalRef;
   settings: SettingsModel = {
     OnOff: true,
     PopUpReminder: true,
@@ -23,20 +24,30 @@ export class SettingsComponent implements OnInit {
       } as ReminderModel,
     ],
   };
-  constructor(private modalService: BsModalService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   testar() {
-    chrome.notifications.clear('notificacao1');
-    chrome.notifications.create('notificacao1', {
-      message: 'olá, sou uma notificação!',
-      title: 'titulo',
-      iconUrl: '../favicon.ico',
-      type: 'basic',
-    });
+    chrome.alarms.create('alarm1', { periodInMinutes: 1 });
+    // chrome.notifications.clear('notificacao1');
+    // chrome.notifications.create('notificacao1', {
+    //   message: 'olá, sou uma notificação!',
+    //   title: 'titulo',
+    //   iconUrl: '../favicon.ico',
+    //   type: 'basic',
+    // });
 
     // this.bsModalRef = this.modalService.show(ModalContentComponent);
     // this.bsModalRef.content.closeBtnName = 'Close';
+  }
+  manageReminders() {
+    const url = `${UrlConstant.IndexBaseUrl}${UrlConstant.ManageSettingsUrl}`;
+    chrome.tabs.create({ url });
+  }
+
+  newReminder() {
+    const url = `${UrlConstant.IndexBaseUrl}${UrlConstant.ReminderUrl}`;
+    chrome.tabs.create({ url });
   }
 }

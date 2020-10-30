@@ -8,5 +8,9 @@
     "default_title": "Be Healthier",
     "default_popup": "index.html?#/settings"
   },
-  "permissions": ["notifications"]
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": ["notifications", "alarms", "background", "storage", "tabs"]
 }
