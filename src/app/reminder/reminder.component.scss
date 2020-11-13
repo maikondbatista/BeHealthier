@@ -5,3 +5,11 @@
 .right-align {
   float: right;
 }
+
+input[type="file"] {
+  display: none;
+}
+
+.lbl-icon {
+  display: block;
+}

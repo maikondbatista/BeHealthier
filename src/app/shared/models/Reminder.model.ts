@@ -4,4 +4,5 @@ export interface ReminderModel {
   description: string;
   value: number; // value in minutes
   onOff: boolean;
+  icon: string;
 }

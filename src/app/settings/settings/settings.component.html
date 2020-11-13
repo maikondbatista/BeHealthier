@@ -6,7 +6,7 @@
         </div>
         <div class="form-row">
             <div class="col">
-                <mv-slider [(value)]="reminder.value" [min]="1" [max]="100"></mv-slider>
+                <mv-slider [(value)]="reminder.value" [min]="1" [max]="200"></mv-slider>
             </div>
             <div class="col div-status">
                 <div class="custom-control custom-switch">
@@ -19,10 +19,12 @@
             <hr style="width: 100%;" />
         </div>
     </ng-container>
+</div>
+<div>
     <div class="row">
-        <button class='btn btn-primary center' (click)="newReminder()">Novo Alerta</button>
+        <button class='btn btn-primary center' (click)="newReminder()">Novo alerta</button>
     </div>
     <div class="row mb-2 align-bot">
-        <button class='btn btn-primary center' (click)="manageReminders()">Gerenciar meus Alertas</button>
+        <button class='btn btn-primary center' (click)="manageReminders()">Gerenciar meus alertas</button>
     </div>
 </div>

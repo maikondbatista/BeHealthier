@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MockConstant } from 'src/app/shared/constants/mock.constant';
 import { UrlConstant } from 'src/app/shared/constants/urls.contant';
 import {
   ReminderModel,
@@ -12,32 +13,22 @@ import {
 })
 export class SettingsComponent implements OnInit {
   Title = 'Be Healthier';
-  settings: SettingsModel = {
-    OnOff: true,
-    PopUpReminder: true,
-    Reminders: [
-      {
-        id: 1,
-        description: 'Lembrete para piscar',
-        value: 7,
-        title: 'Piscar',
-      } as ReminderModel,
-    ],
-  };
+  settings = MockConstant.Settings;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    chrome.alarms.create('alarm1', { periodInMinutes: 1 });
+  }
 
   testar() {
     chrome.alarms.create('alarm1', { periodInMinutes: 1 });
     // chrome.notifications.clear('notificacao1');
     // chrome.notifications.create('notificacao1', {
-    //   message: 'olá, sou uma notificação!',
+    //   message: 'Que tal dar uma pausa para se esticar um pouco?',
     //   title: 'titulo',
-    //   iconUrl: '../favicon.ico',
+    //   iconUrl: '../assets/stretch-icon.png',
     //   type: 'basic',
     // });
-
     // this.bsModalRef = this.modalService.show(ModalContentComponent);
     // this.bsModalRef.content.closeBtnName = 'Close';
   }

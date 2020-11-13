@@ -12,5 +12,5 @@
     "scripts": ["background.js"],
     "persistent": false
   },
-  "permissions": ["notifications", "alarms", "background", "storage", "tabs"]
+  "permissions": ["notifications", "alarms", "background"]
 }

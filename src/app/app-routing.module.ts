@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UrlConstant } from './shared/constants/urls.contant';
 
 const routes: Routes = [
   {
-    path: UrlConstant.SettingsUrl,
-    pathMatch: 'full',
+    path: 'settings',
     loadChildren: () =>
       import('./settings/settings/settings.module').then(
         (m) => m.SettingsModule
       ),
   },
   {
-    path: UrlConstant.ManageSettingsUrl,
+    path: 'manage',
     loadChildren: () =>
       import('./manage/manage.module').then((m) => m.ManageModule),
   },
   {
-    path: UrlConstant.ReminderUrl,
+    path: 'reminder',
     loadChildren: () =>
       import('./reminder/reminder.module').then((m) => m.ReminderModule),
   },

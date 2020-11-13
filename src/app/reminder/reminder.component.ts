@@ -24,7 +24,7 @@ export class ReminderComponent implements OnInit {
     return UrlConstant;
   }
 
-  teste() {
+  voltar() {
     console.log(this.location.getState());
     console.log(window.history.length);
     this.location.back();
