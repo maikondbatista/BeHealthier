@@ -32,4 +32,18 @@ export class ReminderComponent implements OnInit {
   get thereIsPreviousPage() {
     return window.history.length > 1;
   }
+
+  changeListener(evt): void {
+    debugger; // uncomment this for debugging purposes
+    var tgt = evt.target || window.event.srcElement,
+      files = tgt.files;
+
+    if (FileReader && files && files.length) {
+      var fr = new FileReader();
+      fr.onload = function () {
+        console.log(fr.result);
+      };
+      fr.readAsDataURL(files[0]);
+    }
+  }
 }

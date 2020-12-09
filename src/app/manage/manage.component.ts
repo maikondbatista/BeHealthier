@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MockConstant } from '../shared/constants/mock.constant';
+import { InitialReminders } from '../shared/constants/initial-reminders';
 import { UrlConstant } from '../shared/constants/urls.contant';
 import { SettingsModel, ReminderModel } from '../shared/models/Model.module';
 
@@ -11,7 +11,7 @@ import { SettingsModel, ReminderModel } from '../shared/models/Model.module';
 })
 export class ManageComponent implements OnInit {
   Title = 'Be Healthier';
-  settings = MockConstant.Settings;
+  settings = InitialReminders.All;
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {}

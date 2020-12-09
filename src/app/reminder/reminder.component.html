@@ -21,7 +21,7 @@
         <div class="form-row">
             <label id="icon" class="btn btn-primary ml-1">
                 Escolher Arquivo
-                <input type="file" [(ngModel)]="reminder.icon" />
+                <input type="file" [(ngModel)]="reminder.icon" (change)="changeListener($event)" />
             </label>
             <label class="mt-1 ml-1">{{reminder.icon || "Nenhum arquivo selecionado"}}</label>
         </div>

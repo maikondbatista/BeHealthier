@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { StorageService } from './services/storage.service';
 
 @NgModule({
   declarations: [],
@@ -23,7 +24,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     NgxBootstrapSliderModule,
     ModalModule,
   ],
-  providers: [],
+  providers: [StorageService],
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {
