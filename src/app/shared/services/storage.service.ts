@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { DefaultIcon } from '../constants/default.icon';
 import { InitialReminders } from '../constants/initial-reminders';
 import { ReminderModel, SettingsModel } from '../models/Model.module';
+import { GetNextInterval } from './frequency.service';
 
 @Injectable()
 export class StorageService {
   private storage = localStorage;
-  private dbName = 'Alerts';
+
   // settings: SettingsModel;
   constructor() {}
   private SetDefaultAlerts() {
-    this.UpdateDatabase(InitialReminders.All);
+    this.UpdateDatabase(InitialReminders);
   }
 
   private stringify(obj: SettingsModel): string {
@@ -21,7 +22,7 @@ export class StorageService {
     return JSON.parse(value) as SettingsModel;
   }
   get Settings() {
-    return this.parse(this.storage.getItem(this.dbName));
+    return this.parse(this.storage.getItem(dbName));
   }
   CheckDatabase() {
     const settings = this.Settings;
@@ -31,31 +32,35 @@ export class StorageService {
   }
   public SetReminder(reminder: ReminderModel) {
     const settings = this.Settings;
+    if (reminder.icon) {
+      reminder.icon = DefaultIcon;
+    }
+    reminder = GetNextInterval(reminder);
     if (reminder.id > 0) {
       const index = settings.Reminders.findIndex((s) => s.id === reminder.id);
       settings.Reminders[index] = reminder;
     } else {
       settings.Reminders.push(reminder);
     }
+
     // temporary method until there's unique key control
     this.UpdateDatabase(settings);
-
-    ///IMPLEMENTAR: TROCAR O DIV POR DOCUMENT E SEGUIR
-    let event = new CustomEvent('reminderHasChanged', reminder as any);
-
-    document.dispatchEvent(event);
-
-    // document.dispatchEvent(
-    //   new CustomEvent('funcDoRequest', {
-    //     detail: { task: 'dir' },
-    //   })
-    // );
   }
+
+  DeleteReminder(reminder: ReminderModel) {
+    const settings = this.Settings;
+    let index = settings.Reminders.findIndex((s) => s.id === reminder.id);
+    if (index > -1) {
+      settings.Reminders.splice(index, 1);
+    }
+    this.UpdateDatabase(settings);
+  }
+
   UpdateDatabase(settings: SettingsModel) {
     settings.Reminders.map((val, index) => {
       val.id = index + 1; // unique key control
     });
-    this.storage.setItem(this.dbName, this.stringify(settings));
+    this.storage.setItem(dbName, this.stringify(settings));
   }
   public GetReminderById(id: number): ReminderModel {
     return this.Settings.Reminders.find((s) => s.id === id);
@@ -73,3 +78,5 @@ export function LoadDatabase(storageService: StorageService) {
 //     console.log(e);
 //   }.bind(this)
 // );
+
+export const dbName = 'Settings';

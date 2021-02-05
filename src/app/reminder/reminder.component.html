@@ -1,4 +1,4 @@
-<button class="btn btn-link" (click)="voltar()" *ngIf="thereIsPreviousPage">
+<button class="btn btn-link" (click)="goBack()" *ngIf="thereIsPreviousPage">
     &#8592; Voltar para o gerenciamento de alertas
 </button>
 
@@ -21,22 +21,23 @@
         <div class="form-row">
             <label id="icon" class="btn btn-primary ml-1">
                 Escolher Arquivo
-                <input type="file" [(ngModel)]="reminder.icon" (change)="changeListener($event)" />
+                <input type="file" (change)="changeListener($event)" />
             </label>
-            <label class="mt-1 ml-1">{{reminder.icon || "Nenhum arquivo selecionado"}}</label>
+            <img *ngIf="reminder.icon" [src]="reminder.icon">
+            <label *ngIf="!reminder.icon" class="mt-1 ml-1">{{"Nenhum arquivo selecionado"}}</label>
         </div>
 
     </div>
 
     <div class="form-row">
-        <label for="slider">{{reminder.title}}: Lembrar à cada {{reminder.value}} minutos</label>
+        <label for="slider">{{reminder.title}}: Lembrar à cada {{reminder.interval}} minutos</label>
     </div>
     <div class="form-row">
         <div class="col">
-            <mv-slider id="slider" [(value)]="reminder.value" [min]="1" [max]="200"></mv-slider>
+            <mv-slider id="slider" [(value)]="reminder.interval" [min]="1" [max]="200"></mv-slider>
         </div>
     </div>
     <div class="form-row mt-3 right-align">
-        <button class="btn btn-primary">Salvar</button>
+        <button class="btn btn-primary" (click)="save()">Salvar</button>
     </div>
 </div>

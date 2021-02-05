@@ -1,7 +1,7 @@
 {
   "name": "Be Healthier",
   "version": "1.0",
-  "description": "Build an Extension with Angular",
+  "description": "Uma extensão criada para te ajudar a lembrar de hábitos saudáveis enquanto você navega",
   "manifest_version": 2,
   "browser_action": {
     "browser_style": true,
@@ -10,7 +10,7 @@
   },
   "background": {
     "scripts": ["background.js"],
-    "persistent": false
+    "persistent": true
   },
   "permissions": ["notifications", "alarms", "background", "storage"]
 }
