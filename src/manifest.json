@@ -2,15 +2,13 @@
   "name": "Be Healthier",
   "version": "1.0",
   "description": "Uma extensão criada para te ajudar a lembrar de hábitos saudáveis enquanto você navega",
-  "manifest_version": 2,
-  "browser_action": {
-    "browser_style": true,
+  "manifest_version": 3,
+  "action": {
     "default_title": "Be Healthier",
     "default_popup": "index.html?#/settings"
   },
   "background": {
-    "scripts": ["background.js"],
-    "persistent": true
+    "service_worker": "background.js"
   },
-  "permissions": ["notifications", "alarms", "background", "storage"]
+  "permissions": ["notifications", "alarms", "storage"]
 }
