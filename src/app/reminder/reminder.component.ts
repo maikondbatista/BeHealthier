@@ -10,6 +10,7 @@ import { StorageService } from '../shared/services/storage.service';
   selector: 'app-reminder',
   templateUrl: './reminder.component.html',
   styleUrls: ['./reminder.component.scss'],
+  standalone: false
 })
 export class ReminderComponent implements OnInit {
   value = 1;
@@ -51,9 +52,9 @@ export class ReminderComponent implements OnInit {
     this.router.navigate(['../manage']);
   }
 
-  changeListener(evt): void {
+  changeListener(evt: any): void {
     const self = this;
-    var tgt = evt.target || window.event.srcElement,
+    var tgt = evt?.target || window?.event?.srcElement,
       files = tgt.files;
 
     if (FileReader && files && files.length) {

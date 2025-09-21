@@ -10,10 +10,11 @@ import { StorageService } from '../shared/services/storage.service';
   selector: 'app-manage',
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.scss'],
+  standalone: false
 })
 export class ManageComponent implements OnInit {
   Title = 'Be Healthier';
-  settings: SettingsModel;
+  settings!: SettingsModel;
   constructor(
     private router: Router,
     private route: ActivatedRoute,

@@ -10,10 +10,11 @@ import { StorageService } from 'src/app/shared/services/storage.service';
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
+  standalone: false
 })
 export class SettingsComponent implements OnInit {
   Title = 'Be Healthier';
-  settings: SettingsModel;
+  settings!: SettingsModel;
   constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {

@@ -10,11 +10,9 @@ import { StorageService } from './services/storage.service';
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgxBootstrapSliderModule,
-    ModalModule.forRoot(),
   ],
   exports: [
     CommonModule,
@@ -22,7 +20,6 @@ import { StorageService } from './services/storage.service';
     FormsModule,
     ReactiveFormsModule,
     NgxBootstrapSliderModule,
-    ModalModule,
   ],
   providers: [StorageService],
 })

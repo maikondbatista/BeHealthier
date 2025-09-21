@@ -1,3 +1,3 @@
 // group model exportation in one file
-export { ReminderModel } from './Reminder.model';
-export { SettingsModel } from './Settings.model';
+export type { ReminderModel } from './Reminder.model';
+export type { SettingsModel } from './Settings.model';

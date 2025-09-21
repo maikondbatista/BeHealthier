@@ -5,6 +5,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   selector: 'app-reminder',
   templateUrl: './reminder.component.html',
   styleUrls: ['./reminder.component.scss'],
+  standalone: false
 })
 export class ReminderComponent implements OnInit {
   constructor() {}

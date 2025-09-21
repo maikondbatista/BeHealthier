@@ -22,7 +22,7 @@ export class StorageService {
     return JSON.parse(value) as SettingsModel;
   }
   get Settings() {
-    return this.parse(this.storage.getItem(dbName));
+    return this.parse(this.storage.getItem(dbName) ?? '');
   }
   CheckDatabase() {
     const settings = this.Settings;
@@ -62,7 +62,7 @@ export class StorageService {
     });
     this.storage.setItem(dbName, this.stringify(settings));
   }
-  public GetReminderById(id: number): ReminderModel {
+  public GetReminderById(id: number): ReminderModel | undefined {
     return this.Settings.Reminders.find((s) => s.id === id);
   }
 }
