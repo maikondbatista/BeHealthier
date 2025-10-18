@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UrlConstant } from 'src/app/shared/constants/urls.contant';
 import {
   ReminderModel,
@@ -10,12 +12,13 @@ import { StorageService } from 'src/app/shared/services/storage.service';
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
-  standalone: false
+  imports: [CommonModule, ReactiveFormsModule, FormsModule ],
+  standalone: true
 })
 export class SettingsComponent implements OnInit {
   Title = 'Be Healthier';
   settings!: SettingsModel;
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService) { }
 
   ngOnInit(): void {
     this.settings = this.storageService.Settings;

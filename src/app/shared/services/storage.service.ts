@@ -3,6 +3,7 @@ import { DefaultIcon } from '../constants/default.icon';
 import { InitialReminders } from '../constants/initial-reminders';
 import { ReminderModel, SettingsModel } from '../models/Model.module';
 import { GetNextInterval } from './frequency.service';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class StorageService {
@@ -67,8 +68,8 @@ export class StorageService {
   }
 }
 
-export function LoadDatabase(storageService: StorageService) {
-  return () => storageService.CheckDatabase();
+export function LoadDatabase(storageService: StorageService): void {
+  storageService.CheckDatabase();
 }
 
 // document.addEventListener(

@@ -22,6 +22,8 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "sourceMap": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -30,11 +32,9 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss",
-              "node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css"
+              "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"
             ]
           },
           "configurations": {
