@@ -5,7 +5,7 @@ import { UrlConstant } from 'src/app/shared/constants/urls.contant';
 import {
   ReminderModel,
   SettingsModel,
-} from 'src/app/shared/models/Model.module';
+} from 'src/app/shared/models/model.module';
 import { StorageService } from 'src/app/shared/services/storage.service';
 
 @Component({

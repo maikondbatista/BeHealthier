@@ -1,26 +1,29 @@
 import { Injectable } from '@angular/core';
-import { DefaultIcon } from '../constants/default.icon';
-import { InitialReminders } from '../constants/initial-reminders';
-import { ReminderModel, SettingsModel } from '../models/Model.module';
+import { DefaultReminders } from '../constants/defaults/default.reminders';
 import { GetNextInterval } from './frequency.service';
-import { Observable, of } from 'rxjs';
+import { DefaultIcon } from '../constants/defaults/default.icon';
+import { ReminderModel, SettingsModel } from '../models/model.module';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class StorageService {
-  private storage = localStorage;
 
+  private storage: Storage = window.localStorage;
+  
   // settings: SettingsModel;
-  constructor() {}
+  constructor() { }
   private SetDefaultAlerts() {
-    this.UpdateDatabase(InitialReminders);
+    this.UpdateDatabase(DefaultReminders);
   }
-
+  
   private stringify(obj: SettingsModel): string {
     return JSON.stringify(obj);
   }
-
+  
   private parse(value: string): SettingsModel {
-    return JSON.parse(value) as SettingsModel;
+    if (!value) return {} as SettingsModel;
+      return JSON.parse(value) as SettingsModel;
   }
   get Settings() {
     return this.parse(this.storage.getItem(dbName) ?? '');
@@ -38,7 +41,7 @@ export class StorageService {
     }
     reminder = GetNextInterval(reminder);
     if (reminder.id > 0) {
-      const index = settings.Reminders.findIndex((s) => s.id === reminder.id);
+      const index = settings.Reminders.findIndex((s: ReminderModel) => s.id === reminder.id);
       settings.Reminders[index] = reminder;
     } else {
       settings.Reminders.push(reminder);
@@ -50,7 +53,7 @@ export class StorageService {
 
   DeleteReminder(reminder: ReminderModel) {
     const settings = this.Settings;
-    let index = settings.Reminders.findIndex((s) => s.id === reminder.id);
+    let index = settings.Reminders.findIndex((s: ReminderModel) => s.id === reminder.id);
     if (index > -1) {
       settings.Reminders.splice(index, 1);
     }
@@ -58,13 +61,13 @@ export class StorageService {
   }
 
   UpdateDatabase(settings: SettingsModel) {
-    settings.Reminders.map((val, index) => {
+    settings.Reminders.map((val: ReminderModel, index: number) => {
       val.id = index + 1; // unique key control
     });
     this.storage.setItem(dbName, this.stringify(settings));
   }
   public GetReminderById(id: number): ReminderModel | undefined {
-    return this.Settings.Reminders.find((s) => s.id === id);
+    return this.Settings.Reminders.find((s:ReminderModel) => s.id === id);
   }
 }
 

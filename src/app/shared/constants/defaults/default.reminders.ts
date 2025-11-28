@@ -1,7 +1,7 @@
-import { ReminderModel, SettingsModel } from '../models/model.module';
-import { DefaultIcon } from './defaults/default.icon';
+import { ReminderModel, SettingsModel } from '../../models/model.module';
+import { DefaultIcon } from './default.icon';
 
-export var InitialReminders: SettingsModel = {
+export var DefaultReminders: SettingsModel = {
   Reminders: [
     {
       id: 1,

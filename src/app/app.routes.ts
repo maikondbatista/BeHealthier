@@ -3,9 +3,16 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'settings',
-    loadChildren: () =>
+    loadComponent: () =>
       import('./settings/settings/settings.component').then(
         (m) => m.SettingsComponent
+      ),
+  },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./teste/teste').then(
+        (m) => m.Teste
       ),
   },
   // {

@@ -1,4 +1,4 @@
-import { ReminderModel } from '../models/Model.module';
+import { ReminderModel } from "../models/Reminder.model";
 
 // function replicated at background.js temporarily
 export function GetNextInterval(config: ReminderModel) {

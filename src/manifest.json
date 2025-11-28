@@ -10,8 +10,7 @@
     "default_popup": "index.html?#/settings"
   },
   "background": {
-    "service_worker": "background.js",
-    "persistent": true
+    "service_worker": "background.js"
   },
   "permissions": ["notifications", "alarms","background", "storage"]
 }
