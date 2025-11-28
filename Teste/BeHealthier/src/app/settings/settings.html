@@ -1,0 +1,34 @@
+<div class="content">
+    <h5>{{Title}}</h5>
+    @for(reminder of settings.Reminders; track reminder.id) {
+    <ng-container>
+        <div class="form-row">
+            <label>{{reminder.title}}: Lembrar à cada {{reminder.interval}} minutos</label>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <!-- <mv-slider [(value)]="reminder.interval" (slideStop)="saveReminder(reminder)" [min]="1"
+                    [max]="200"></mv-slider> -->
+            </div>
+            <div class="col div-status">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" [id]="reminder.id" [checked]="reminder.On"
+                        (change)="saveReminder(reminder)" />
+                    <label class="custom-control-label" [for]="reminder.id"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr style="width: 100%;" />
+        </div>
+    </ng-container>
+    }
+</div>
+<div>
+    <div class="row">
+        <button class='btn btn-primary center' (click)="newReminder()">Novo alerta</button>
+    </div>
+    <div class="row mb-2 align-bot">
+        <button class='btn btn-primary center' (click)="manageReminders()">Gerenciar meus alertas</button>
+    </div>
+</div>
